@@ -1,0 +1,68 @@
+[p GLOBOPT AUTOSTATIC IEEE_FLT IEEE_DBL LFSROK EMI_WORD ]
+[d version 1.1 ]
+[d edition pro ]
+[d chip 18F4580 ]
+[d frameptr 4065 ]
+"4 C:\Program Files\Microchip\xc8\v2.46\pic\sources\c99\common\fleq.c
+[v ___fleq __fleq `(b  1 e 0 0 ]
+"62 C:\Program Files\Microchip\xc8\v2.46\pic\sources\c99\common\float.c
+[v ___ftpack __ftpack `(f  1 e 4 0 ]
+"86 C:\Program Files\Microchip\xc8\v2.46\pic\sources\c99\common\ftadd.c
+[v ___ftadd __ftadd `(f  1 e 4 0 ]
+"54 C:\Program Files\Microchip\xc8\v2.46\pic\sources\c99\common\ftdiv.c
+[v ___ftdiv __ftdiv `(f  1 e 4 0 ]
+"62 C:\Program Files\Microchip\xc8\v2.46\pic\sources\c99\common\ftmul.c
+[v ___ftmul __ftmul `(f  1 e 4 0 ]
+"19 C:\Program Files\Microchip\xc8\v2.46\pic\sources\c99\common\ftsub.c
+[v ___ftsub __ftsub `(f  1 e 4 0 ]
+"10 C:\Program Files\Microchip\xc8\v2.46\pic\sources\c99\common\sprcadd.c
+[v ___fladd __fladd `(d  1 e 4 0 ]
+"245
+[v ___flsub __flsub `(d  1 e 4 0 ]
+"11 C:\Program Files\Microchip\xc8\v2.46\pic\sources\c99\common\sprcdiv.c
+[v ___fldiv __fldiv `(d  1 e 4 0 ]
+"8 C:\Program Files\Microchip\xc8\v2.46\pic\sources\c99\common\sprcmul.c
+[v ___flmul __flmul `(d  1 e 4 0 ]
+"15 C:\Program Files\Microchip\xc8\v2.46\pic\sources\c99\common\Umul32.c
+[v ___lmul __lmul `(ul  1 e 4 0 ]
+"91 C:\Program Files\Microchip\xc8\v2.46\pic\sources\c99\common\Umul64.c
+[v ___omul __omul `(uo  1 e 8 0 ]
+"10 C:\Users\ESDC\MPLABXProjects\abi_segment.X\segmentt.c
+[v _delay delay `(v  1 e 1 0 ]
+"15
+[v _main main `(v  1 e 1 0 ]
+"25888 C:/Program Files/Microchip/MPLABX/v6.20/packs/Microchip/PIC18Fxxxx_DFP/1.6.159/xc8\pic\include\proc\pic18f4580.h
+[v _PORTC PORTC `VEuc  1 e 1 @3970 ]
+"26058
+[v _PORTD PORTD `VEuc  1 e 1 @3971 ]
+"27281
+[v _TRISC TRISC `VEuc  1 e 1 @3988 ]
+"27503
+[v _TRISD TRISD `VEuc  1 e 1 @3989 ]
+"15 C:\Users\ESDC\MPLABXProjects\abi_segment.X\segmentt.c
+[v _main main `(v  1 e 1 0 ]
+{
+"35
+[v main@n4 n4 `i  1 a 2 24 ]
+"32
+[v main@n3 n3 `i  1 a 2 22 ]
+"29
+[v main@n2 n2 `i  1 a 2 20 ]
+"26
+[v main@n1 n1 `i  1 a 2 18 ]
+"22
+[v main@a a `[10]uc  1 a 10 4 ]
+[v main@b b `[4]uc  1 a 4 14 ]
+"20
+[v main@F10488 F10488 `[10]uc  1 s 10 F10488 ]
+"22
+[v main@F10490 F10490 `[4]uc  1 s 4 F10490 ]
+"61
+} 0
+"10
+[v _delay delay `(v  1 e 1 0 ]
+{
+"12
+[v delay@i i `l  1 a 4 0 ]
+"13
+} 0

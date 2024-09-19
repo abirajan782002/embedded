@@ -1,0 +1,638 @@
+
+
+Microchip MPLAB XC8 Assembler V2.46 build 20240104201356 
+                                                                                               Thu Aug 22 09:23:33 2024
+
+Microchip MPLAB XC8 C Compiler v2.46 (Free license) build 20240104201356 Og1 
+     1                           	processor	18F4580
+     2                           	fnconf	rparam,??,?,0
+     3                           	pagewidth 120
+     4                           	opt	flic
+     5                           	psect	cinit,global,reloc=2,class=CODE,delta=1
+     6                           	psect	cstackCOMRAM,global,class=COMRAM,space=1,delta=1,lowdata,noexec
+     7                           	psect	text0,global,reloc=2,class=CODE,delta=1
+     8                           	psect	text1,global,reloc=2,class=CODE,delta=1
+     9                           	psect	text2,global,reloc=2,class=CODE,delta=1
+    10                           	psect	text3,global,reloc=2,class=CODE,delta=1
+    11                           	psect	smallconst,global,reloc=2,class=SMALLCONST,delta=1,noexec
+    12                           	psect	intsave_regs,global,class=BIGRAM,space=1,delta=1,noexec
+    13                           	psect	rparam,global,class=COMRAM,space=1,delta=1,noexec
+    14   000000                     
+    15                           ; Generated 17/10/2023 GMT
+    16                           ; 
+    17                           ; Copyright © 2023, Microchip Technology Inc. and its subsidiaries ("Microchip")
+    18                           ; All rights reserved.
+    19                           ; 
+    20                           ; This software is developed by Microchip Technology Inc. and its subsidiaries ("Microch
+      +                          ip").
+    21                           ; 
+    22                           ; Redistribution and use in source and binary forms, with or without modification, are
+    23                           ; permitted provided that the following conditions are met:
+    24                           ; 
+    25                           ;     1. Redistributions of source code must retain the above copyright notice, this lis
+      +                          t of
+    26                           ;        conditions and the following disclaimer.
+    27                           ; 
+    28                           ;     2. Redistributions in binary form must reproduce the above copyright notice, this 
+      +                          list
+    29                           ;        of conditions and the following disclaimer in the documentation and/or other
+    30                           ;        materials provided with the distribution. Publication is not required when
+    31                           ;        this file is used in an embedded application.
+    32                           ; 
+    33                           ;     3. Microchip's name may not be used to endorse or promote products derived from th
+      +                          is
+    34                           ;        software without specific prior written permission.
+    35                           ; 
+    36                           ; THIS SOFTWARE IS PROVIDED BY MICROCHIP "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES,
+    37                           ; INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS F
+      +                          OR
+    38                           ; PURPOSE ARE DISCLAIMED.  IN NO EVENT SHALL MICROCHIP BE LIABLE FOR ANY DIRECT, INDIREC
+      +                          T,
+    39                           ; INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING BUT NOT LIMITED TO
+    40                           ; PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA OR PROFITS; OR BUSINESS
+    41                           ; INTERRUPTION) HOWSOEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, ST
+      +                          RICT
+    42                           ; LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE U
+      +                          SE OF
+    43                           ; THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+    44                           ; 
+    45                           ; 
+    46                           ; Code-generator required, PIC18F4580 Definitions
+    47                           ; 
+    48                           ; SFR Addresses
+    49   000000                     _RCIF	set	31989
+    50   000000                     _RC2	set	31762
+    51   000000                     _RC1	set	31761
+    52   000000                     _RB7	set	31759
+    53   000000                     _RB6	set	31758
+    54   000000                     _RB5	set	31757
+    55   000000                     _RB4	set	31756
+    56   000000                     _PORTB	set	3969
+    57   000000                     _TRISA	set	3986
+    58   000000                     _TRISB	set	3987
+    59   000000                     _TRISC	set	3988
+    60   000000                     _TXREG	set	4013
+    61   000000                     _PORTD	set	3971
+    62   000000                     _TXIF	set	31988
+    63   000000                     _RC0	set	31760
+    64   000000                     _ADCON1	set	4033
+    65   000000                     _SPBRG	set	4015
+    66   000000                     _RCREG	set	4014
+    67   000000                     _RCSTA	set	4011
+    68   000000                     _TXSTA	set	4012
+    69   000000                     _TRISD	set	3989
+    70                           
+    71                           ; #config settings
+    72                           
+    73                           	psect	cinit
+    74   0006E0                     __pcinit:
+    75                           	callstack 0
+    76   0006E0                     start_initialization:
+    77                           	callstack 0
+    78   0006E0                     __initialization:
+    79                           	callstack 0
+    80   0006E0                     end_of_initialization:
+    81                           	callstack 0
+    82   0006E0                     __end_of__initialization:
+    83                           	callstack 0
+    84   0006E0  0100               	movlb	0
+    85   0006E2  EF01  F003         	goto	_main	;jump to C main() function
+    86                           
+    87                           	psect	cstackCOMRAM
+    88   000001                     __pcstackCOMRAM:
+    89                           	callstack 0
+    90   000001                     lcdcmd@a:
+    91                           	callstack 0
+    92   000001                     uart_tx@a:
+    93                           	callstack 0
+    94                           
+    95                           ; 1 bytes @ 0x0
+    96   000001                     	ds	1
+    97   000002                     lcdcmd@i:
+    98                           	callstack 0
+    99                           
+   100                           ; 2 bytes @ 0x1
+   101   000002                     	ds	2
+   102   000004                     main@a:
+   103                           	callstack 0
+   104                           
+   105                           ; 1 bytes @ 0x3
+   106   000004                     	ds	1
+   107                           
+   108 ;;
+   109 ;;Main: autosize = 0, tempsize = 0, incstack = 0, save=0
+   110 ;;
+   111 ;; *************** function _main *****************
+   112 ;; Defined at:
+   113 ;;		line 129 in file "uartc.c"
+   114 ;; Parameters:    Size  Location     Type
+   115 ;;		None
+   116 ;; Auto vars:     Size  Location     Type
+   117 ;;  i               2    0        int 
+   118 ;;  a               1    3[COMRAM] unsigned char 
+   119 ;; Return value:  Size  Location     Type
+   120 ;;                  1    wreg      void 
+   121 ;; Registers used:
+   122 ;;		wreg, status,2, status,0, cstack
+   123 ;; Tracked objects:
+   124 ;;		On entry : 0/0
+   125 ;;		On exit  : 0/0
+   126 ;;		Unchanged: 0/0
+   127 ;; Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5
+   128 ;;      Params:         0       0       0       0       0       0       0
+   129 ;;      Locals:         1       0       0       0       0       0       0
+   130 ;;      Temps:          0       0       0       0       0       0       0
+   131 ;;      Totals:         1       0       0       0       0       0       0
+   132 ;;Total ram usage:        1 bytes
+   133 ;; Hardware stack levels required when called: 1
+   134 ;; This function calls:
+   135 ;;		_lcdcmd
+   136 ;;		_uart_rx
+   137 ;;		_uart_tx
+   138 ;; This function is called by:
+   139 ;;		Startup code after reset
+   140 ;; This function uses a non-reentrant model
+   141 ;;
+   142                           
+   143                           	psect	text0
+   144   000602                     __ptext0:
+   145                           	callstack 0
+   146   000602                     _main:
+   147                           	callstack 30
+   148   000602                     
+   149                           ;uartc.c: 131:     TRISC=0x80;
+   150   000602  0E80               	movlw	128
+   151   000604  6E94               	movwf	148,c	;volatile
+   152                           
+   153                           ;uartc.c: 132:     TRISD=0x00;
+   154   000606  0E00               	movlw	0
+   155   000608  6E95               	movwf	149,c	;volatile
+   156                           
+   157                           ;uartc.c: 134:     TXSTA=0x24;
+   158   00060A  0E24               	movlw	36
+   159   00060C  6EAC               	movwf	172,c	;volatile
+   160                           
+   161                           ;uartc.c: 135:     RCSTA=0x90;
+   162   00060E  0E90               	movlw	144
+   163   000610  6EAB               	movwf	171,c	;volatile
+   164                           
+   165                           ;uartc.c: 136:     SPBRG=129;
+   166   000612  0E81               	movlw	129
+   167   000614  6EAF               	movwf	175,c	;volatile
+   168                           
+   169                           ;uartc.c: 138:     ADCON1=0X0F;
+   170   000616  0E0F               	movlw	15
+   171   000618  6EC1               	movwf	193,c	;volatile
+   172                           
+   173                           ;uartc.c: 139:     TRISB=0xF0;
+   174   00061A  0EF0               	movlw	240
+   175   00061C  6E93               	movwf	147,c	;volatile
+   176                           
+   177                           ;uartc.c: 140:     TRISA=0x00;
+   178   00061E  0E00               	movlw	0
+   179   000620  6E92               	movwf	146,c	;volatile
+   180   000622                     
+   181                           ;uartc.c: 142:     lcdcmd(0x01);
+   182   000622  0E01               	movlw	1
+   183   000624  EC3E  F003         	call	_lcdcmd
+   184   000628                     
+   185                           ;uartc.c: 143:     lcdcmd(0x0f);
+   186   000628  0E0F               	movlw	15
+   187   00062A  EC3E  F003         	call	_lcdcmd
+   188   00062E                     
+   189                           ;uartc.c: 144:     lcdcmd(0x38);
+   190   00062E  0E38               	movlw	56
+   191   000630  EC3E  F003         	call	_lcdcmd
+   192   000634                     
+   193                           ;uartc.c: 145:     lcdcmd(0x06);
+   194   000634  0E06               	movlw	6
+   195   000636  EC3E  F003         	call	_lcdcmd
+   196   00063A                     l914:
+   197                           
+   198                           ;uartc.c: 149:     {;uartc.c: 151:     a=uart_rx();
+   199   00063A  EC66  F003         	call	_uart_rx	;wreg free
+   200   00063E  6E04               	movwf	main@a^0,c
+   201   000640                     
+   202                           ;uartc.c: 154:     if(a=='*')
+   203   000640  0E2A               	movlw	42
+   204   000642  1804               	xorwf	main@a^0,w,c
+   205   000644  A4D8               	btfss	status,2,c
+   206   000646  EF27  F003         	goto	u211
+   207   00064A  EF29  F003         	goto	u210
+   208   00064E                     u211:
+   209   00064E  EF1D  F003         	goto	l914
+   210   000652                     u210:
+   211   000652                     l918:
+   212                           
+   213                           ;uartc.c: 157:         {;uartc.c: 158:             a=uart_rx();
+   214   000652  EC66  F003         	call	_uart_rx	;wreg free
+   215   000656  6E04               	movwf	main@a^0,c
+   216   000658                     
+   217                           ;uartc.c: 159:             if(a=='#')
+   218   000658  0E23               	movlw	35
+   219   00065A  1804               	xorwf	main@a^0,w,c
+   220   00065C  A4D8               	btfss	status,2,c
+   221   00065E  EF33  F003         	goto	u221
+   222   000662  EF35  F003         	goto	u220
+   223   000666                     u221:
+   224   000666  EF37  F003         	goto	l926
+   225   00066A                     u220:
+   226   00066A  EF1D  F003         	goto	l914
+   227   00066E                     l926:
+   228                           
+   229                           ;uartc.c: 164:             {;uartc.c: 165:                 uart_tx(a);
+   230   00066E  5004               	movf	main@a^0,w,c
+   231   000670  EC5A  F003         	call	_uart_tx
+   232   000674  EF29  F003         	goto	l918
+   233   000678  EF00  F000         	goto	start
+   234   00067C                     __end_of_main:
+   235                           	callstack 0
+   236                           
+   237 ;; *************** function _uart_tx *****************
+   238 ;; Defined at:
+   239 ;;		line 94 in file "uartc.c"
+   240 ;; Parameters:    Size  Location     Type
+   241 ;;  a               1    wreg     unsigned char 
+   242 ;; Auto vars:     Size  Location     Type
+   243 ;;  a               1    0[COMRAM] unsigned char 
+   244 ;; Return value:  Size  Location     Type
+   245 ;;                  1    wreg      void 
+   246 ;; Registers used:
+   247 ;;		wreg
+   248 ;; Tracked objects:
+   249 ;;		On entry : 0/0
+   250 ;;		On exit  : 0/0
+   251 ;;		Unchanged: 0/0
+   252 ;; Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5
+   253 ;;      Params:         0       0       0       0       0       0       0
+   254 ;;      Locals:         1       0       0       0       0       0       0
+   255 ;;      Temps:          0       0       0       0       0       0       0
+   256 ;;      Totals:         1       0       0       0       0       0       0
+   257 ;;Total ram usage:        1 bytes
+   258 ;; Hardware stack levels used: 1
+   259 ;; This function calls:
+   260 ;;		Nothing
+   261 ;; This function is called by:
+   262 ;;		_main
+   263 ;;		_display
+   264 ;; This function uses a non-reentrant model
+   265 ;;
+   266                           
+   267                           	psect	text1
+   268   0006B4                     __ptext1:
+   269                           	callstack 0
+   270   0006B4                     _uart_tx:
+   271                           	callstack 30
+   272                           
+   273                           ;incstack = 0
+   274                           ;uart_tx@a stored from wreg
+   275   0006B4  6E01               	movwf	uart_tx@a^0,c
+   276   0006B6                     
+   277                           ;uartc.c: 94: void uart_tx(unsigned char a);uartc.c: 95: {;uartc.c: 97:     TXREG=a;
+   278   0006B6  C001  FFAD         	movff	uart_tx@a,4013	;volatile
+   279   0006BA                     l84:
+   280   0006BA  A89E               	btfss	3998,4,c	;volatile
+   281   0006BC  EF62  F003         	goto	u21
+   282   0006C0  EF64  F003         	goto	u20
+   283   0006C4                     u21:
+   284   0006C4  EF5D  F003         	goto	l84
+   285   0006C8                     u20:
+   286   0006C8                     
+   287                           ;uartc.c: 99:     TXIF=0;
+   288   0006C8  989E               	bcf	3998,4,c	;volatile
+   289   0006CA  0012               	return		;funcret
+   290   0006CC                     __end_of_uart_tx:
+   291                           	callstack 0
+   292                           
+   293 ;; *************** function _uart_rx *****************
+   294 ;; Defined at:
+   295 ;;		line 102 in file "uartc.c"
+   296 ;; Parameters:    Size  Location     Type
+   297 ;;		None
+   298 ;; Auto vars:     Size  Location     Type
+   299 ;;		None
+   300 ;; Return value:  Size  Location     Type
+   301 ;;                  1    wreg      unsigned char 
+   302 ;; Registers used:
+   303 ;;		wreg, status,2
+   304 ;; Tracked objects:
+   305 ;;		On entry : 0/0
+   306 ;;		On exit  : 0/0
+   307 ;;		Unchanged: 0/0
+   308 ;; Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5
+   309 ;;      Params:         0       0       0       0       0       0       0
+   310 ;;      Locals:         0       0       0       0       0       0       0
+   311 ;;      Temps:          0       0       0       0       0       0       0
+   312 ;;      Totals:         0       0       0       0       0       0       0
+   313 ;;Total ram usage:        0 bytes
+   314 ;; Hardware stack levels used: 1
+   315 ;; This function calls:
+   316 ;;		Nothing
+   317 ;; This function is called by:
+   318 ;;		_main
+   319 ;; This function uses a non-reentrant model
+   320 ;;
+   321                           
+   322                           	psect	text2
+   323   0006CC                     __ptext2:
+   324                           	callstack 0
+   325   0006CC                     _uart_rx:
+   326                           	callstack 30
+   327   0006CC                     l90:
+   328   0006CC  AA9E               	btfss	3998,5,c	;volatile
+   329   0006CE  EF6B  F003         	goto	u31
+   330   0006D2  EF6D  F003         	goto	u30
+   331   0006D6                     u31:
+   332   0006D6  EF66  F003         	goto	l90
+   333   0006DA                     u30:
+   334   0006DA                     
+   335                           ;uartc.c: 105:     RCIF=0;
+   336   0006DA  9A9E               	bcf	3998,5,c	;volatile
+   337   0006DC                     
+   338                           ;uartc.c: 106:     return (RCREG);
+   339   0006DC  50AE               	movf	174,w,c	;volatile
+   340   0006DE  0012               	return		;funcret
+   341   0006E0                     __end_of_uart_rx:
+   342                           	callstack 0
+   343                           
+   344 ;; *************** function _lcdcmd *****************
+   345 ;; Defined at:
+   346 ;;		line 82 in file "uartc.c"
+   347 ;; Parameters:    Size  Location     Type
+   348 ;;  a               1    wreg     unsigned char 
+   349 ;; Auto vars:     Size  Location     Type
+   350 ;;  a               1    0[COMRAM] unsigned char 
+   351 ;;  i               2    1[COMRAM] int 
+   352 ;; Return value:  Size  Location     Type
+   353 ;;                  1    wreg      void 
+   354 ;; Registers used:
+   355 ;;		wreg, status,2, status,0
+   356 ;; Tracked objects:
+   357 ;;		On entry : 0/0
+   358 ;;		On exit  : 0/0
+   359 ;;		Unchanged: 0/0
+   360 ;; Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5
+   361 ;;      Params:         0       0       0       0       0       0       0
+   362 ;;      Locals:         3       0       0       0       0       0       0
+   363 ;;      Temps:          0       0       0       0       0       0       0
+   364 ;;      Totals:         3       0       0       0       0       0       0
+   365 ;;Total ram usage:        3 bytes
+   366 ;; Hardware stack levels used: 1
+   367 ;; This function calls:
+   368 ;;		Nothing
+   369 ;; This function is called by:
+   370 ;;		_main
+   371 ;; This function uses a non-reentrant model
+   372 ;;
+   373                           
+   374                           	psect	text3
+   375   00067C                     __ptext3:
+   376                           	callstack 0
+   377   00067C                     _lcdcmd:
+   378                           	callstack 30
+   379                           
+   380                           ;incstack = 0
+   381                           ;lcdcmd@a stored from wreg
+   382   00067C  6E01               	movwf	lcdcmd@a^0,c
+   383   00067E                     
+   384                           ;uartc.c: 82: void lcdcmd (unsigned char a);uartc.c: 83: {;uartc.c: 84:     RC0=0;
+   385   00067E  9082               	bcf	3970,0,c	;volatile
+   386                           
+   387                           ;uartc.c: 85:     RC1=0;
+   388   000680  9282               	bcf	3970,1,c	;volatile
+   389   000682                     
+   390                           ;uartc.c: 86:     PORTD=a;
+   391   000682  C001  FF83         	movff	lcdcmd@a,3971	;volatile
+   392   000686                     
+   393                           ;uartc.c: 87:     RC2=1;
+   394   000686  8482               	bsf	3970,2,c	;volatile
+   395   000688                     
+   396                           ;uartc.c: 88:     for(int i=0;i<=1000;i++);
+   397   000688  0E00               	movlw	0
+   398   00068A  6E03               	movwf	(lcdcmd@i+1)^0,c
+   399   00068C  0E00               	movlw	0
+   400   00068E  6E02               	movwf	lcdcmd@i^0,c
+   401   000690                     l806:
+   402   000690  4A02               	infsnz	lcdcmd@i^0,f,c
+   403   000692  2A03               	incf	(lcdcmd@i+1)^0,f,c
+   404   000694  BE03               	btfsc	(lcdcmd@i+1)^0,7,c
+   405   000696  EF56  F003         	goto	u11
+   406   00069A  0EE9               	movlw	233
+   407   00069C  5C02               	subwf	lcdcmd@i^0,w,c
+   408   00069E  0E03               	movlw	3
+   409   0006A0  5803               	subwfb	(lcdcmd@i+1)^0,w,c
+   410   0006A2  A0D8               	btfss	status,0,c
+   411   0006A4  EF56  F003         	goto	u11
+   412   0006A8  EF58  F003         	goto	u10
+   413   0006AC                     u11:
+   414   0006AC  EF48  F003         	goto	l806
+   415   0006B0                     u10:
+   416   0006B0                     
+   417                           ;uartc.c: 89:     RC2=0;
+   418   0006B0  9482               	bcf	3970,2,c	;volatile
+   419   0006B2  0012               	return		;funcret
+   420   0006B4                     __end_of_lcdcmd:
+   421                           	callstack 0
+   422                           
+   423                           	psect	smallconst
+   424   000600                     __psmallconst:
+   425                           	callstack 0
+   426   000600  00                 	db	0
+   427   000601  00                 	db	0	; dummy byte at the end
+   428   000000                     
+   429                           	psect	rparam
+   430   000000                     tosu	equ	0xFFF
+   431                           tosh	equ	0xFFE
+   432                           tosl	equ	0xFFD
+   433                           stkptr	equ	0xFFC
+   434                           pclatu	equ	0xFFB
+   435                           pclath	equ	0xFFA
+   436                           pcl	equ	0xFF9
+   437                           tblptru	equ	0xFF8
+   438                           tblptrh	equ	0xFF7
+   439                           tblptrl	equ	0xFF6
+   440                           tablat	equ	0xFF5
+   441                           prodh	equ	0xFF4
+   442                           prodl	equ	0xFF3
+   443                           indf0	equ	0xFEF
+   444                           postinc0	equ	0xFEE
+   445                           postdec0	equ	0xFED
+   446                           preinc0	equ	0xFEC
+   447                           plusw0	equ	0xFEB
+   448                           fsr0h	equ	0xFEA
+   449                           fsr0l	equ	0xFE9
+   450                           wreg	equ	0xFE8
+   451                           indf1	equ	0xFE7
+   452                           postinc1	equ	0xFE6
+   453                           postdec1	equ	0xFE5
+   454                           preinc1	equ	0xFE4
+   455                           plusw1	equ	0xFE3
+   456                           fsr1h	equ	0xFE2
+   457                           fsr1l	equ	0xFE1
+   458                           bsr	equ	0xFE0
+   459                           indf2	equ	0xFDF
+   460                           postinc2	equ	0xFDE
+   461                           postdec2	equ	0xFDD
+   462                           preinc2	equ	0xFDC
+   463                           plusw2	equ	0xFDB
+   464                           fsr2h	equ	0xFDA
+   465                           fsr2l	equ	0xFD9
+   466                           status	equ	0xFD8
+
+Data Sizes:
+    Strings     0
+    Constant    0
+    Data        0
+    BSS         0
+    Persistent  0
+    Stack       0
+
+Auto Spaces:
+    Space          Size  Autos    Used
+    COMRAM           95      4       4
+    BANK0           160      0       0
+    BANK1           256      0       0
+    BANK2           256      0       0
+    BANK3           256      0       0
+    BANK4           256      0       0
+    BANK5           256      0       0
+
+Pointer List with Targets:
+
+    None.
+
+Critical Paths under _main in COMRAM
+
+    _main->_lcdcmd
+
+Critical Paths under _main in BANK0
+
+    None.
+
+Critical Paths under _main in BANK1
+
+    None.
+
+Critical Paths under _main in BANK2
+
+    None.
+
+Critical Paths under _main in BANK3
+
+    None.
+
+Critical Paths under _main in BANK4
+
+    None.
+
+Critical Paths under _main in BANK5
+
+    None.
+
+Call Graph Tables:
+
+ ---------------------------------------------------------------------------------
+ (Depth) Function   	        Calls       Base Space   Used Autos Params    Refs
+ ---------------------------------------------------------------------------------
+ (0) _main                                                 3     3      0     105
+                                              3 COMRAM     1     1      0
+                             _lcdcmd
+                            _uart_rx
+                            _uart_tx
+ ---------------------------------------------------------------------------------
+ (1) _uart_tx                                              1     1      0      15
+                                              0 COMRAM     1     1      0
+ ---------------------------------------------------------------------------------
+ (1) _uart_rx                                              0     0      0       0
+ ---------------------------------------------------------------------------------
+ (1) _lcdcmd                                               3     3      0      45
+                                              0 COMRAM     3     3      0
+ ---------------------------------------------------------------------------------
+ Estimated maximum stack depth 1
+ ---------------------------------------------------------------------------------
+
+ Call Graph Graphs:
+
+ _main (ROOT)
+   _lcdcmd
+   _uart_rx
+   _uart_tx
+
+ Address spaces:
+Name               Size   Autos  Total    Cost      Usage
+BITCOMRAM           5F      0       0       0        0.0%
+EEDATA             100      0       0       0        0.0%
+NULL                 0      0       0       0        0.0%
+CODE                 0      0       0       0        0.0%
+COMRAM              5F      4       4       1        4.2%
+STACK                0      0       0       2        0.0%
+DATA                 0      0       0       3        0.0%
+BITBANK0            A0      0       0       4        0.0%
+BANK0               A0      0       0       5        0.0%
+BITBANK1           100      0       0       6        0.0%
+BANK1              100      0       0       7        0.0%
+BITBANK2           100      0       0       8        0.0%
+BANK2              100      0       0       9        0.0%
+BITBANK3           100      0       0      10        0.0%
+BANK3              100      0       0      11        0.0%
+BITBANK4           100      0       0      12        0.0%
+BANK4              100      0       0      13        0.0%
+BITBANK5           100      0       0      14        0.0%
+BANK5              100      0       0      15        0.0%
+BITBIGSFRhhh        3E      0       0      16        0.0%
+BITBIGSFRhhl        11      0       0      17        0.0%
+BITBIGSFRhlh         C      0       0      18        0.0%
+BITBIGSFRhllh        8      0       0      19        0.0%
+BITBIGSFRhlll        E      0       0      20        0.0%
+BITBIGSFRl         281      0       0      21        0.0%
+ABS                  0      0       0      22        0.0%
+BIGRAM             5FF      0       0      23        0.0%
+BIGSFR               0      0       0     200        0.0%
+BITSFR_3             0      0       0     200        0.0%
+SFR_3                0      0       0     200        0.0%
+BITSFR_2             0      0       0     200        0.0%
+SFR_2                0      0       0     200        0.0%
+BITSFR_1             0      0       0     200        0.0%
+SFR_1                0      0       0     200        0.0%
+BITSFR               0      0       0     200        0.0%
+SFR                  0      0       0     200        0.0%
+
+
+Microchip Technology PIC18 Macro Assembler V2.46 build 20240104201356 
+Symbol Table                                                                                   Thu Aug 22 09:23:33 2024
+
+                     l80 06B0                       l81 06B2                       l90 06CC  
+                     l92 06DA                       l84 06BA                       l93 06DE  
+                     l86 06C8                       l87 06CA                       u10 06B0  
+                     u11 06AC                       u20 06C8                       u21 06C4  
+                     u30 06DA                       u31 06D6                      l800 0688  
+                    l810 06B6                      l812 06CC                      l806 0690  
+                    l814 06DC                      l910 062E                      l808 0694  
+                    l920 0658                      l912 0634                      l904 0602  
+                    l914 063A                      l906 0622                      l916 0640  
+                    l908 0628                      l926 066E                      l918 0652  
+                    l794 067E                      l796 0682                      l798 0686  
+                    _RC0 7C10                      _RC1 7C11                      _RB4 7C0C  
+                    _RC2 7C12                      _RB5 7C0D                      _RB6 7C0E  
+                    _RB7 7C0F                      u210 0652                      u211 064E  
+                    u220 066A                      u221 0666                     _RCIF 7CF5  
+                   _TXIF 7CF4                     _main 0602                     start 0000  
+           ___param_bank 0000                    ?_main 0001                    _RCREG 0FAE  
+                  _RCSTA 0FAB                    _SPBRG 0FAF                    _PORTB 0F81  
+                  _PORTD 0F83                    _TRISA 0F92                    _TRISB 0F93  
+                  _TRISC 0F94                    _TRISD 0F95                    _TXREG 0FAD  
+                  _TXSTA 0FAC                    main@a 0004          __end_of_uart_rx 06E0  
+        __end_of_uart_tx 06CC                    status 0FD8          __initialization 06E0  
+           __end_of_main 067C                   ??_main 0004            __activetblptr 0000  
+                 _ADCON1 0FC1                   _lcdcmd 067C                   isa$std 0001  
+           __mediumconst 0000                ??_uart_rx 0001                ??_uart_tx 0001  
+             __accesstop 0060  __end_of__initialization 06E0            ___rparam_used 0001  
+         __pcstackCOMRAM 0001                  ?_lcdcmd 0001                  __Hparam 0000  
+                __Lparam 0000             __psmallconst 0600                  __pcinit 06E0  
+                __ramtop 0600                  __ptext0 0602                  __ptext1 06B4  
+                __ptext2 06CC                  __ptext3 067C                  _uart_rx 06CC  
+                _uart_tx 06B4                  lcdcmd@a 0001                  lcdcmd@i 0002  
+   end_of_initialization 06E0           __end_of_lcdcmd 06B4      start_initialization 06E0  
+               ??_lcdcmd 0001              __smallconst 0600                 ?_uart_rx 0001  
+               ?_uart_tx 0001                 __Hrparam 0000                 __Lrparam 0000  
+               isa$xinst 0000                 uart_tx@a 0001  
